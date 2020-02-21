@@ -31,7 +31,7 @@ function convertToCSV(data) {
 //Handle http requests
 
 app.get('/data', (req, res) => {
-    var ref = db.collection("/air_quality_data").get().then((snapshot) => {
+    var ref = db.collection("/air_quality_data_1").get().then((snapshot) => {
         var dataList = [];
         snapshot.forEach((doc) => {
             //console.log(doc.id, '=>', doc.data());
