@@ -35,7 +35,23 @@ app.get('/data', (req, res) => {
         var dataList = [];
         snapshot.forEach((doc) => {
             //console.log(doc.id, '=>', doc.data());
-            dataList.push(doc.data());
+            var filterData = [];
+            [doc.data()].forEach(item=>{
+                var d = new Date(item.date._seconds*1000);
+
+                //console.log(item.date._seconds)
+                var t = new Date(item.time);
+                dataList.push({
+                    Date : d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear(),
+                    Time : t.getHours()+":"+t.getMinutes()+":"+t.getSeconds(),
+                    co : item['co'],
+                    no : item['no'],
+                    pm10 : item['pm10'],
+                    pm25 : item['pm25']
+                })
+            });
+
+            //dataList.push(filterData);
         });
         convertToCSV(dataList);
         res.download('./out.csv');
