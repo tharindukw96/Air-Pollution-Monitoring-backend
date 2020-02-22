@@ -39,15 +39,15 @@ app.get('/data', (req, res) => {
             [doc.data()].forEach(item=>{
                 var d = new Date(item.date._seconds*1000);
 
-                //console.log(item.date._seconds)
+                //console.log(item['pm2_5'])
                 var t = new Date(item.time);
                 dataList.push({
                     Date : d.getDate()+"/"+d.getMonth()+"/"+d.getFullYear(),
                     Time : t.getHours()+":"+t.getMinutes()+":"+t.getSeconds(),
-                    co : item['co'],
-                    no : item['no'],
-                    pm10 : item['pm10'],
-                    pm25 : item['pm25']
+                    CO : item['co'],
+                    NO : item['no'],
+                    PM10 : item['pm10'],
+                    PM25 : item['pm2_5']
                 })
             });
 
@@ -62,7 +62,7 @@ app.get('/data', (req, res) => {
 
 });
 
-app.put('/data', (req, res) => {
+/*app.put('/data', (req, res) => {
     var ref = db.collection("/air_quality_data")
     if(req.body.data){
         var data = req.params.data;
@@ -72,5 +72,5 @@ app.put('/data', (req, res) => {
     }
     res.send({"msg" : "Data added!"});
 });
-
+*/
 var server = app.listen(process.env.PORT || 3000, function () { });
