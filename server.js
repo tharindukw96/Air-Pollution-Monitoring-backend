@@ -17,7 +17,7 @@ var db = admin.firestore();
 
 
 //Convert JSON to csv
-async function convertToCSV(data) {
+function convertToCSV(data) {
 
     var json = JSON.stringify(data);
     fs.writeFile('myjsonfile.json', json, 'utf8', function(){
@@ -53,7 +53,7 @@ app.get('/data', async (req, res) => {
 
             //dataList.push(filterData);
         });
-        await convertToCSV(dataList);
+        convertToCSV(dataList);
         res.download('./out.csv');
     })
         .catch((err) => {
