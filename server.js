@@ -53,7 +53,7 @@ app.get('/data', (req, res) => {
 
             //dataList.push(filterData);
         });
-        convertToCSV(dataList);
+        await convertToCSV(dataList);
         res.download('./out.csv');
     })
         .catch((err) => {
